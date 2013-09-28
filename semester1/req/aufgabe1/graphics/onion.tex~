@@ -1,0 +1,70 @@
+%% Creator: Inkscape inkscape 0.48.4, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'onion.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{416bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1)%
+    \put(0,0){\includegraphics[width=\unitlength]{onion.pdf}}%
+    \put(0.49929111,0.49279433){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Product}}}%
+    \put(0.50018786,0.64667687){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{System}}}%
+    \put(0.50028176,0.77414938){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Containing System}}}%
+    \put(0.49991555,0.89502845){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Wider Environment}}}%
+    \put(0.85397904,0.6877979){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[lb]{\smash{Partner-
+Garagen}}}%
+    \put(0.11528912,0.68779798){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[lb]{\smash{Kunden}}}%
+    \put(0.49962442,0.07174426){\color[rgb]{0.6,0.6,0.6}\makebox(0,0)[b]{\smash{Fahrzeug-
+führer}}}%
+    \put(0.22661527,0.30325103){\color[rgb]{0.50196078,0,0}\makebox(0,0)[lb]{\smash{Disposition}}}%
+    \put(0.74328965,0.63866465){\color[rgb]{0,0.50196078,0}\makebox(0,0)[lb]{\smash{Rechnungs-
+wesen}}}%
+    \put(0.73539452,0.303251){\color[rgb]{0,0.50196078,0}\makebox(0,0)[lb]{\smash{Werkstatt}}}%
+    \put(0.23046142,0.63866472){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[lb]{\smash{Direktion}}}%
+    \put(0.64894485,0.46993187){\color[rgb]{0,0,0.50196078}\makebox(0,0)[lb]{\smash{IT}}}%
+    \put(0.30457505,0.46993174){\color[rgb]{0,0,0.50196078}\makebox(0,0)[lb]{\smash{Anwender}}}%
+  \end{picture}%
+\endgroup%
