@@ -168,13 +168,13 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplb7t.tfm
 INPUT Fallstudie_Nutzag.toc
 INPUT Fallstudie_Nutzag.toc
 OUTPUT Fallstudie_Nutzag.toc
+INPUT graphics/onion.pdf
+INPUT ./graphics/onion.pdf
+INPUT ./graphics/onion.pdf
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/palatino/pplr7t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplr8r.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/palatino/pplb7t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm
-INPUT graphics/onion.pdf
-INPUT ./graphics/onion.pdf
-INPUT ./graphics/onion.pdf
 INPUT Fallstudie_Nutzag.aux
 INPUT titlepage.aux
 INPUT titlepage.aux
