@@ -1,6 +1,0 @@
-PWD /home/thomas/Gruppenarbeiten/FHNW/semester1/req/aufgabe1
-INPUT /etc/texmf/web2c/texmf.cnf
-INPUT /usr/share/texlive/texmf/web2c/texmf.cnf
-INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT titlepage.tex
-OUTPUT titlepage.log
