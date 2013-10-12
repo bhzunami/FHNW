@@ -19,6 +19,8 @@
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage{multirow}
+% For Kontext diagram
+\usepackage{pdflscape}
 %
 % Graue Farbe
 \usepackage{blindtext} 
@@ -72,7 +74,9 @@
 %
 \include{groups_of_interests}
 \newpage
-%
+% 
+\include{context}
+\newpage
 \include{user_of_the_system}
 \newpage
 %
@@ -83,6 +87,7 @@
 \newpage
 %
 \include{problems}
+\newpage
 %
 \include{goals}
 \end{document}
