@@ -505,4 +505,106 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="labelloc" val="east"/>
     </comp>
   </circuit>
+  <circuit name="OR">
+    <a name="circuit" val="OR"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <wire from="(100,100)" to="(180,100)"/>
+    <wire from="(210,170)" to="(210,240)"/>
+    <wire from="(100,240)" to="(190,240)"/>
+    <wire from="(220,320)" to="(280,320)"/>
+    <wire from="(170,170)" to="(210,170)"/>
+    <wire from="(330,160)" to="(380,160)"/>
+    <wire from="(210,240)" to="(280,240)"/>
+    <wire from="(330,260)" to="(380,260)"/>
+    <wire from="(180,100)" to="(180,140)"/>
+    <wire from="(100,180)" to="(160,180)"/>
+    <wire from="(330,80)" to="(380,80)"/>
+    <wire from="(100,280)" to="(200,280)"/>
+    <wire from="(180,140)" to="(280,140)"/>
+    <wire from="(160,210)" to="(220,210)"/>
+    <wire from="(210,280)" to="(280,280)"/>
+    <wire from="(190,100)" to="(190,240)"/>
+    <wire from="(100,140)" to="(170,140)"/>
+    <wire from="(210,280)" to="(210,320)"/>
+    <wire from="(330,340)" to="(380,340)"/>
+    <wire from="(200,180)" to="(200,280)"/>
+    <wire from="(100,320)" to="(210,320)"/>
+    <wire from="(220,210)" to="(220,320)"/>
+    <wire from="(160,180)" to="(160,210)"/>
+    <wire from="(100,360)" to="(280,360)"/>
+    <wire from="(100,60)" to="(280,60)"/>
+    <wire from="(170,140)" to="(170,170)"/>
+    <wire from="(200,180)" to="(280,180)"/>
+    <wire from="(190,100)" to="(280,100)"/>
+    <comp lib="1" loc="(330,160)" name="OR Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="0" loc="(380,340)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="R3"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(100,240)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="B0"/>
+    </comp>
+    <comp lib="1" loc="(330,80)" name="OR Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="0" loc="(100,360)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="B3"/>
+    </comp>
+    <comp lib="0" loc="(100,320)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="B2"/>
+    </comp>
+    <comp lib="0" loc="(100,60)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="A0"/>
+    </comp>
+    <comp lib="0" loc="(100,180)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="A3"/>
+    </comp>
+    <comp lib="0" loc="(380,160)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="R1"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="1" loc="(330,260)" name="OR Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="0" loc="(380,260)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="R2"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(100,280)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="B1"/>
+    </comp>
+    <comp lib="0" loc="(380,80)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="R0"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(100,140)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="A2"/>
+    </comp>
+    <comp lib="1" loc="(330,340)" name="OR Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="0" loc="(100,100)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="A1"/>
+    </comp>
+  </circuit>
 </project>
