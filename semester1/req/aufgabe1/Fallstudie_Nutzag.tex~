@@ -1,0 +1,84 @@
+%
+% Authors
+% Denis Augsburger
+% Piero Steinger
+% Thomas Wilde
+% Nicolas Mauchle
+% 
+%
+% Version 1.0
+%
+\documentclass[12pt,a4paper,german]{article}
+%
+\author{Denis Augsburger, Piero Steinger, Thomas Wilde, Nicolas Mauchle }
+%
+\usepackage[left=2.5cm,right=2.5cm,bottom=2.5cm,includeheadfoot]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{multirow}
+% For Kontext diagram
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage{caption}
+%
+% Graue Farbe
+\usepackage{blindtext} 
+\usepackage{framed} 
+\usepackage{xcolor} 
+\colorlet{shadecolor}{gray!25} 
+\usepackage{color}
+\input{utils/colors}
+%
+\usepackage{hyperref}
+\hypersetup{
+    pdfborder = {0 0 0}
+}
+ \usepackage{mathpazo}
+%Damit man label setzten kann wo man will
+\usepackage[all]{hypcap}
+\usepackage[stable]{footmisc}
+% KOPF UND FUSS ZEILEN
+\pagestyle{fancy}
+%
+\fancyhf[R]{}
+\fancyhf[L]{\leftmark}
+%
+% suppress page number in bottom center:
+\cfoot{}
+%
+\fancyfoot[L]{}
+\fancyfoot[R]{Seite \thepage \  von  \pageref{LastPage}}
+%
+%Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+%
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+%
+% Document
+%
+\begin{document}
+\include{titlepage}
+\newpage
+\tableofcontents
+\include{overview}
+\newpage
+% Beschreiben der Interessengruppe (Aufgabe 1)
+\include{description_stakeholder}
+\include{resistance}
+\include{problems}
+\include{groups_of_interests}
+\include{user_of_the_system}
+\include{stakeholder_prioritization}
+\newpage
+% Aufgabe 2 Kontext 
+\include{context}
+\newpage
+% Aufgabe 3 Ziele
+\include{goals}
+\listoffigures
+\listoftables
+
+\end{document}
