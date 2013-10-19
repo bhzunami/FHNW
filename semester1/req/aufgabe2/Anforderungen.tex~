@@ -80,18 +80,6 @@ Nachfolgend werden Vor- und Nachteile der Satzschablone erwähnt. Sie enstanden 
 \textbf{Nachteile}
 \begin{itemize}
 \item Komplexe Abläufe lassen sich nur schwer formulieren. (Aufbrechen in Teilaufgaben)
-\item Nebeneffekte und Dauer und Abhängigkeiten dessen lassen sich nicht gut formulieren z.B. ``Das System muss Administratoren die Möglichkeit bieten sich als beliebige Nutzer anzumelden'' lässt folgende Fragen offen:
-    \begin{itemize}
-    \item Operiert der Administrator während seiner Unteranmeldung weiterhin mit seinen Administratorenrechten?
-    \item Was passiert wenn der Zielbenutzer gleichzeitig angemeldet ist?
-    \item Läuft solch eine Unteranmeldung irgendwan ab?
-    \end{itemize}
-\item Konkurrente Problemstellungen lassen sich nicht klar ausdrücken z.B. ``Das System muss dem Benutzer die Möglichkeit bieten die Bezeichnung eines Fahrzeugs zu ändern''. Grundsätzlich einfach aber in der Praxis kompliziert falls zwei Users gleichzeitig das selbe Fahrzeug bearbeiten wollen:
-    \begin{itemize}
-    \item Soll ein Mutex-Lock bestehen? Oder vielleicht eine Bearbeitungs-Historie?
-    \item Falls Mutex; wie gross ist der Kontext dieses Locks? 
-    \item Welche andere Prozesse und Objekte in der Applikation sehen sich davon beeinträchtigt und wie?
-    \end{itemize}
 \end{itemize}
 
 \end{document}
