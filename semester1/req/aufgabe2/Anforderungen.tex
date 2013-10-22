@@ -1,50 +1,3 @@
-%
-% Authors
-% Denis Augsburger
-% Piero Steinger
-% Thomas Wilde
-% Nicolas Mauchle
-% 
-%
-% Version 1.0
-%
-\documentclass[12pt,a4paper,german]{article}
-%
-\author{Denis Augsburger, Piero Steinger, Thomas Wilde, Nicolas Mauchle }
-%
-\usepackage[left=2.5cm,right=2.5cm,bottom=2.5cm,includeheadfoot]{geometry}
-\usepackage{babel}
-\usepackage[utf8]{inputenc}
-\usepackage{fancyhdr}
-\usepackage{lastpage}
-\usepackage{hyperref}
-\hypersetup{
-    pdfborder = {0 0 0}
-}
-\usepackage[all]{hypcap}
-\usepackage[stable]{footmisc}
-% KOPF UND FUSS ZEILEN
-\pagestyle{fancy}
-%
-\fancyhf[R]{}
-\fancyhf[L]{\leftmark}
-%
-% suppress page number in bottom center:
-\cfoot{}
-%
-\fancyfoot[L]{}
-\fancyfoot[R]{Seite \thepage \  von  \pageref{LastPage}}
-%
-%Linie unten
-\renewcommand{\footrulewidth}{0.5pt}
-%
-\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
-%
-% Document
-%
-\begin{document}
-\include{titlepage}
-\newpage
 \section{Ziele}
 Die folgenden Ziele sind mit Hilfe der Satzschablone definiert worden.
 \begin{itemize}
@@ -93,5 +46,3 @@ Nachfolgend werden Vor- und Nachteile der Satzschablone erwähnt. Sie enstanden 
     \item Welche andere Prozesse und Objekte in der Applikation sehen sich davon beeinträchtigt und wie?
     \end{itemize}
 \end{itemize}
-
-\end{document}
