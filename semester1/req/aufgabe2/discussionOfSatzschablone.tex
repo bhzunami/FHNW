@@ -1,0 +1,24 @@
+\section{Diskussion der Satzschablone}
+Nachfolgend werden Vor- und Nachteile der Satzschablone erwähnt. Sie entstanden aus einer kurzen Diskussion.\\[2ex]
+\textbf{Vorteile}
+\begin{itemize}
+\item Die Schablone hilft Ziele einfach und kurz zu formulieren.
+\item Alle Ziele sind einheitlich formuliert. Es gibt eine klare Struktur.
+\end{itemize}
+%
+\textbf{Nachteile}
+\begin{itemize}
+\item Komplexe Abläufe lassen sich nur schwer formulieren. (Aufbrechen in Teilaufgaben)
+\item Nebeneffekte, Dauer und Abhängigkeiten dessen lassen sich nicht gut formulieren z.B. ``Das System muss Administratoren die Möglichkeit bieten sich als beliebiger Nutzer anzumelden'' lässt folgende Fragen offen:
+    \begin{itemize}
+    \item Operiert der Administrator während seiner Unteranmeldung weiterhin mit seinen Administrationsrechten?
+    \item Was passiert wenn der Zielbenutzer gleichzeitig angemeldet ist?
+    \item Läuft solch eine Unteranmeldung irgendwann ab?
+    \end{itemize}
+\item Technische Problemstellungen, welche sich ergeben können, lassen sich nicht klar ausdrücken z.B. ``Das System muss dem Benutzer die Möglichkeit bieten die Bezeichnung eines Fahrzeugs zu ändern''. Grundsätzlich einfach aber in der Praxis kompliziert falls zwei Benutzer gleichzeitig das selbe Fahrzeug bearbeiten wollen. Lösungsansätze sind dabei:
+    \begin{itemize}
+    \item Soll ein Mutex-Lock bestehen? Oder vielleicht eine Bearbeitungs-Historie?
+    \item Falls Mutex; wie gross ist der Kontext dieses Locks? 
+    \item Welche andere Prozesse und Objekte in der Applikation sehen sich davon beeinträchtigt und wie?
+    \end{itemize}
+\end{itemize}
