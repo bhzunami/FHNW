@@ -23,6 +23,7 @@
 \usepackage{pdflscape}
 \usepackage{longtable}
 \usepackage{caption}
+\usepackage{pdfpages}
 %
 % Graue Farbe
 \usepackage{blindtext} 
@@ -91,5 +92,7 @@
 
 \listoffigures
 \listoftables
+\newpage
+\includepdf[pages={1,2,3}]{utils/piero.pdf}
 
 \end{document}
