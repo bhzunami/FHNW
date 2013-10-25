@@ -1,50 +1,3 @@
-%
-% Authors
-% Denis Augsburger
-% Piero Steinger
-% Thomas Wilde
-% Nicolas Mauchle
-% 
-%
-% Version 1.0
-%
-\documentclass[12pt,a4paper,german]{article}
-%
-\author{Denis Augsburger, Piero Steinger, Thomas Wilde, Nicolas Mauchle }
-%
-\usepackage[left=2.5cm,right=2.5cm,bottom=2.5cm,includeheadfoot]{geometry}
-\usepackage{babel}
-\usepackage[utf8]{inputenc}
-\usepackage{fancyhdr}
-\usepackage{lastpage}
-\usepackage{hyperref}
-\hypersetup{
-    pdfborder = {0 0 0}
-}
-\usepackage[all]{hypcap}
-\usepackage[stable]{footmisc}
-% KOPF UND FUSS ZEILEN
-\pagestyle{fancy}
-%
-\fancyhf[R]{}
-\fancyhf[L]{\leftmark}
-%
-% suppress page number in bottom center:
-\cfoot{}
-%
-\fancyfoot[L]{}
-\fancyfoot[R]{Seite \thepage \  von  \pageref{LastPage}}
-%
-%Linie unten
-\renewcommand{\footrulewidth}{0.5pt}
-%
-\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
-%
-% Document
-%
-\begin{document}
-\include{titlepage}
-\newpage
 \section{Ziele}
 Die folgenden Ziele sind mit Hilfe der Satzschablone definiert worden.
 \begin{itemize}
@@ -56,7 +9,7 @@ Die folgenden Ziele sind mit Hilfe der Satzschablone definiert worden.
 %
 \item Das System muss fähig sein, aus der Buchhaltung heraus eine Rechnung für einen Kunden zu erstellen.
 %
-\item Wir eine Rechnung nicht in der abgemachten Frist bezahlt, soll das System die Buchhaltung darauf Hinweisen. 
+\item Wird eine Rechnung nicht in der abgemachten Frist bezahlt, soll das System die Buchhaltung darauf hinweisen. 
 %
 \item Das System muss fähig sein, eine Werkstatt für eine Reparatur anzufragen.
 %
@@ -70,28 +23,26 @@ Die folgenden Ziele sind mit Hilfe der Satzschablone definiert worden.
 \end{itemize}
 \newpage
 \section{Diskussion der Satzschablone}
-Nachfolgend werden Vor- und Nachteile der Satzschablone erwähnt. Sie enstanden aus einer kurzen Diskussion.\\[2ex]
+Nachfolgend werden Vor- und Nachteile der Satzschablone erwähnt. Sie entstanden aus einer kurzen Diskussion.\\[2ex]
 \textbf{Vorteile}
 \begin{itemize}
 \item Die Schablone hilft Ziele einfach und kurz zu formulieren.
-\item Alle Ziele sind dann mehr oder weniger einheitlich formuliert. Es gibt dem ganzen eine Struktur.
+\item Alle Ziele sind einheitlich formuliert. Es gibt eine klare Struktur.
 \end{itemize}
 %
 \textbf{Nachteile}
 \begin{itemize}
 \item Komplexe Abläufe lassen sich nur schwer formulieren. (Aufbrechen in Teilaufgaben)
-\item Nebeneffekte und Dauer und Abhängigkeiten dessen lassen sich nicht gut formulieren z.B. ``Das System muss Administratoren die Möglichkeit bieten sich als beliebige Nutzer anzumelden'' lässt folgende Fragen offen:
+\item Nebeneffekte, Dauer und Abhängigkeiten dessen lassen sich nicht gut formulieren z.B. ``Das System muss Administratoren die Möglichkeit bieten sich als beliebiger Nutzer anzumelden'' lässt folgende Fragen offen:
     \begin{itemize}
-    \item Operiert der Administrator während seiner Unteranmeldung weiterhin mit seinen Administratorenrechten?
+    \item Operiert der Administrator während seiner Unteranmeldung weiterhin mit seinen Administrationsrechten?
     \item Was passiert wenn der Zielbenutzer gleichzeitig angemeldet ist?
-    \item Läuft solch eine Unteranmeldung irgendwan ab?
+    \item Läuft solch eine Unteranmeldung irgendwann ab?
     \end{itemize}
-\item Konkurrente Problemstellungen lassen sich nicht klar ausdrücken z.B. ``Das System muss dem Benutzer die Möglichkeit bieten die Bezeichnung eines Fahrzeugs zu ändern''. Grundsätzlich einfach aber in der Praxis kompliziert falls zwei Users gleichzeitig das selbe Fahrzeug bearbeiten wollen:
+\item Technische Problemstellungen, welche sich ergeben können, lassen sich nicht klar ausdrücken z.B. ``Das System muss dem Benutzer die Möglichkeit bieten die Bezeichnung eines Fahrzeugs zu ändern''. Grundsätzlich einfach aber in der Praxis kompliziert falls zwei Benutzer gleichzeitig das selbe Fahrzeug bearbeiten wollen. Lösungsansätze sind dabei:
     \begin{itemize}
     \item Soll ein Mutex-Lock bestehen? Oder vielleicht eine Bearbeitungs-Historie?
     \item Falls Mutex; wie gross ist der Kontext dieses Locks? 
     \item Welche andere Prozesse und Objekte in der Applikation sehen sich davon beeinträchtigt und wie?
     \end{itemize}
 \end{itemize}
-
-\end{document}
