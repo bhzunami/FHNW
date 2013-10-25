@@ -1,0 +1,46 @@
+\newcommand\beginRequirement[3] {
+	\begin{center}
+	\begin{tabular}{ |llllll| }
+	\hline
+	&&&&&\\
+	Requirement \#: & #1 & Requirement Type: & #2 & Event/BUC/PUC \#: & #3 \\
+	&&&&&\\
+}
+%
+\newcommand\setDescription[1] {
+	Description: & \multicolumn{5}{p{9.5cm}|}{#1}\\
+	&&&&&\\
+}
+%
+\newcommand\setOrginator[1] {
+	Orginator: & \multicolumn{5}{p{9.5cm}|}{#1}\\
+	&&&&&\\
+}
+%
+\newcommand\setCustomer[2] {
+	\multicolumn{2}{|l}{Customer Satisfaction:} & #1 & \multicolumn{2}{l}{Customer Dissatisfaction:} & #2\\
+	&&&&&\\
+}
+%
+\newcommand\setDependencies[1] {
+	Dependencies: & \multicolumn{5}{p{9.5cm}|}{#1}\\
+	&&&&&\\
+}
+%
+\newcommand\setMaterials[1] {
+	\multicolumn{2}{|l}{Supparting Materials:}& \multicolumn{4}{p{9.5cm}|}{#1}\\
+	&&&&&\\
+}
+%
+\newcommand\setConflicts[1] {
+	Conclicts: & #1 &&&&\\
+	&&&&&\\
+}
+%
+\newcommand\setHistory[1] {
+	History: & \multicolumn{2}{l}{#1} &&&\\
+	&&&&&\\
+	\hline
+	\end{tabular}
+	\end{center}
+}
