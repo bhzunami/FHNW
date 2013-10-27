@@ -1,0 +1,101 @@
+\section{Anforderungsbeschreibung}
+% Here you should put your ValoreShell Template
+% Nr 1
+\beginRequirement{1}{9}{7.9}
+\setDescription{Some bla is only bla if enough bla is in it.}
+\setOrginator{Now some bla is some bla to bla}
+\setCustomer{asdf}{asdf}
+\setDependencies{asdf}
+\setMaterials{asdfasdf}
+\setConflicts{asdfasfasdf}
+\setHistory{asdfasdfasdf}
+
+% Nr 2
+\beginRequirement{1}{9}{7.9}
+\setDescription{Some bla is only bla if enough bla is in it.}
+\setOrginator{Now some bla is some bla to bla}
+\setCustomer{asdf}{asdf}
+\setDependencies{asdf}
+\setMaterials{asdfasdf}
+\setConflicts{asdfasfasdf}
+\setHistory{asdfasdfasdf}
+
+% Nr 3
+\beginRequirement{1}{9}{7.9}
+\setDescription{Some bla is only bla if enough bla is in it.}
+\setOrginator{Now some bla is some bla to bla}
+\setCustomer{asdf}{asdf}
+\setDependencies{asdf}
+\setMaterials{asdfasdf}
+\setConflicts{asdfasfasdf}
+\setHistory{asdfasdfasdf}
+
+% Nr 4
+\beginRequirement{1}{9}{7.9}
+\setDescription{Some bla is only bla if enough bla is in it.}
+\setOrginator{Now some bla is some bla to bla}
+\setCustomer{asdf}{asdf}
+\setDependencies{asdf}
+\setMaterials{asdfasdf}
+\setConflicts{asdfasfasdf}
+\setHistory{asdfasdfasdf}
+
+% Nr 5
+\beginRequirement{1}{9}{7.9}
+\setDescription{Some bla is only bla if enough bla is in it.}
+\setOrginator{Now some bla is some bla to bla}
+\setCustomer{asdf}{asdf}
+\setDependencies{asdf}
+\setMaterials{asdfasdf}
+\setConflicts{asdfasfasdf}
+\setHistory{asdfasdfasdf}
+
+% Nr 6
+\beginRequirement{1}{9}{7.9}
+\setDescription{Some bla is only bla if enough bla is in it.}
+\setOrginator{Now some bla is some bla to bla}
+\setCustomer{asdf}{asdf}
+\setDependencies{asdf}
+\setMaterials{asdfasdf}
+\setConflicts{asdfasfasdf}
+\setHistory{asdfasdfasdf}
+
+% Nr 7
+\beginRequirement{1}{9}{7.9}
+\setDescription{Some bla is only bla if enough bla is in it.}
+\setOrginator{Now some bla is some bla to bla}
+\setCustomer{asdf}{asdf}
+\setDependencies{asdf}
+\setMaterials{asdfasdf}
+\setConflicts{asdfasfasdf}
+\setHistory{asdfasdfasdf}
+
+% Nr 8
+\beginRequirement{1}{9}{7.9}
+\setDescription{Some bla is only bla if enough bla is in it.}
+\setOrginator{Now some bla is some bla to bla}
+\setCustomer{asdf}{asdf}
+\setDependencies{asdf}
+\setMaterials{asdfasdf}
+\setConflicts{asdfasfasdf}
+\setHistory{asdfasdfasdf}
+
+% Nr 9
+\beginRequirement{1}{9}{7.9}
+\setDescription{Some bla is only bla if enough bla is in it.}
+\setOrginator{Now some bla is some bla to bla}
+\setCustomer{asdf}{asdf}
+\setDependencies{asdf}
+\setMaterials{asdfasdf}
+\setConflicts{asdfasfasdf}
+\setHistory{asdfasdfasdf}
+
+% Nr 10
+\beginRequirement{1}{9}{7.9}
+\setDescription{Some bla is only bla if enough bla is in it.}
+\setOrginator{Now some bla is some bla to bla}
+\setCustomer{asdf}{asdf}
+\setDependencies{asdf}
+\setMaterials{asdfasdf}
+\setConflicts{asdfasfasdf}
+\setHistory{asdfasdfasdf}

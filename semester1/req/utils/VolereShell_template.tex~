@@ -12,13 +12,8 @@
 	&&&&&\\
 }
 %
-\newcommand\setOriginator[1] {
-	\textbf{Originator:} & \multicolumn{5}{p{9.5cm}|}{#1}\\
-	&&&&&\\
-}
-%
-\newcommand\setRationale[1] {
-	\textbf{Rationale:} & \multicolumn{5}{p{9.5cm}|}{#1}\\
+\newcommand\setOrginator[1] {
+	\textbf{Orginator:} & \multicolumn{5}{p{9.5cm}|}{#1}\\
 	&&&&&\\
 }
 %
@@ -38,7 +33,7 @@
 }
 %
 \newcommand\setConflicts[1] {
-	\textbf{Conflicts:} & #1 &&&&\\
+	\textbf{Conclicts:} & #1 &&&&\\
 	&&&&&\\
 }
 %
