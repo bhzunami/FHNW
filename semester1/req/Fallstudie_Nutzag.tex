@@ -38,6 +38,7 @@
 \hypersetup{
     pdfborder = {0 0 0}
 }
+% muss nach hyperref eingebunden werden
  \usepackage{mathpazo}
 %Damit man label setzten kann wo man will
 \usepackage[all]{hypcap}
@@ -58,6 +59,7 @@
 \renewcommand{\footrulewidth}{0.5pt}
 %
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
 %
 % Document
 %
@@ -92,6 +94,8 @@
 
 \listoffigures
 \listoftables
+\newpage
+\include{glossar}
 \newpage
 \includepdf[pages={1,2,3}]{utils/piero.pdf}
 
