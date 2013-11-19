@@ -1,0 +1,98 @@
+%
+% Authors
+% Denis Augsburger
+% Piero Steinger
+% Thomas Wilde
+% Nicolas Mauchle
+% 
+%
+% Version 1.0
+%
+\documentclass[12pt,a4paper,german]{article}
+%
+\author{Denis Augsburger, Piero Steinger, Thomas Wilde, Nicolas Mauchle }
+%
+\usepackage[left=2.5cm,right=2.5cm,bottom=2.5cm,includeheadfoot]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{multirow}
+% For Kontext diagram
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{pdfpages}
+%
+% Graue Farbe
+\usepackage{blindtext} 
+\usepackage{framed} 
+\usepackage{xcolor} 
+\colorlet{shadecolor}{gray!25} 
+\usepackage{color}
+\input{utils/colors}
+\input{utils/VolereShell_template}
+%
+\usepackage{hyperref}
+\hypersetup{
+    pdfborder = {0 0 0}
+}
+ \usepackage{mathpazo}
+%Damit man label setzten kann wo man will
+\usepackage[all]{hypcap}
+\usepackage[stable]{footmisc}
+% KOPF UND FUSS ZEILEN
+\pagestyle{fancy}
+%
+\fancyhf[R]{}
+\fancyhf[L]{\leftmark}
+%
+% suppress page number in bottom center:
+\cfoot{}
+%
+\fancyfoot[L]{}
+\fancyfoot[R]{Seite \thepage \  von  \pageref{LastPage}}
+%
+%Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+%
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+%
+% Document
+%
+\begin{document}
+\include{aufgabe1/titlepage}
+\newpage
+\tableofcontents
+\include{aufgabe1/overview}
+\newpage
+% Beschreiben der Interessengruppe (Aufgabe 1)
+\include{aufgabe1/description_stakeholder}
+\include{aufgabe1/resistance}
+\include{aufgabe1/problems}
+\include{aufgabe1/groups_of_interests}
+\include{aufgabe1/user_of_the_system}
+\include{aufgabe1/stakeholder_prioritization}
+\newpage
+% 2 Kontext 
+\include{aufgabe1/context}
+\newpage
+% 3 Ziele
+\include{aufgabe1/goals}
+
+% Aufgaben 2.1 / Ziele mit Schablone
+\include{aufgabe2/Anforderungen}
+
+% Aufgabe 3 / Anforderungen beschreiben mit Satzschablone
+\include{aufgabe3/requirement_definition}
+
+% Aufgaben 2.2/ Diskussion
+\include{aufgabe2/discussionOfSatzschablone}
+
+\listoffigures
+\listoftables
+\newpage
+\includepdf[pages={1,2,3}]{utils/piero.pdf}
+
+\end{document}

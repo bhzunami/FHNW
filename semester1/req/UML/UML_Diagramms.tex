@@ -22,20 +22,46 @@
 \umlusecase[x=-1,y=4]{Anzeigen von reservierten Fahrzeugen}
 %
 % usecase-4
-\umlusecase[x=1, y=6]{Reparatur fällige Fahrzeuge anzeigen}
+\umlusecase[x=1, y=6]{Reparaturfällige Fahrzeuge anzeigen}
 %
 % usecase-5
-\umlusecase[x=-1,y=8]{Statistik von jedem Fahrzeuge}
+\umlusecase[x=-1,y=8]{Statistik von jedem Fahrzeug}
+%
+% usecase-6
+\umlusecase[x=-4,y=10]{Verfügbares Fahrzeug finden}
+%
+% usecase-7
+\umlusecase[x=4,y=10]{Fahrzeug bestellen}
+%
+% usecase-8
+\umlusecase[x=0,y=12]{Ausstehende Zahlungen anzeigen}
+%
+% usecase-9
+\umlusecase[x=0,y=14]{Ein Fahrzeug orten}
+%
+% usecase-10
+\umlusecase[x=0,y=16]{Fahrzeug-Status ändern (Neu/Kaputt/Repariert)}
 %
 
 \end{umlsystem}
 
-\umlactor[x=-8,y=2]{Disposition}
-\umlactor[x=-8,y=4]{Management}
-\umlactor[x=8,y=4]{System}
+\umlactor[x=-9,y=9]{Kunde}
+\umlactor[x=-9,y=6]{Disposition}
+\umlactor[x=-9,y=3]{Management}
+\umlactor[x=9,y=6]{Buchhaltung}
+\umlactor[x=9,y=3]{Garage}
 
+\umlassoc{Kunde}{usecase-6}
+\umlassoc{Kunde}{usecase-7}
 \umlassoc{Disposition}{usecase-1}
 \umlassoc{Disposition}{usecase-3}
+\umlassoc{Disposition}{usecase-9}
+\umlassoc{Buchhaltung}{usecase-2}
+\umlassoc{Buchhaltung}{usecase-8}
+\umlassoc{Garage}{usecase-4}
+\umlassoc{Garage}{usecase-10}
+\umlassoc{Management}{usecase-5}
+\umlassoc{Management}{usecase-8}
 
 \end{tikzpicture}
 \caption{Example of Use case diagram using tikz-uml. Examlpe from the book Requirements Engineering by Axel van Lamsweerde.}
