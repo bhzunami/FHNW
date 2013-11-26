@@ -7,64 +7,87 @@
 \usepackage{tikz-uml} 
 \usepackage{amsmath}
 \usepackage{savetrees}
+\usepackage{multirow}
+
 \begin{document}
 \begin{center}
 \begin{figure}[h!]
 \begin{tikzpicture}
 \begin{umlsystem}{Autoverwaltung Nutz AG}
 % usecase-1
-\umlusecase[x=-1]{Anzeigen von verfügbaren Fahrzeuge}
+\umlusecase[x=0,y=6]{\#1: Auflisten von Fahrzeugen}
 %
 % usecase-2
-\umlusecase[x=1,y=2]{Drucken von Einzahlungsscheine}
+\umlusecase[x=0,y=0]{\#2: Faktura erstellen}
 %
 % usecase-3
-\umlusecase[x=-1,y=4]{Anzeigen von reservierten Fahrzeugen}
+\umlusecase[x=0,y=2]{\#3: Statistik von Fahrzeugen}
 %
 % usecase-4
-\umlusecase[x=1, y=6]{Reparaturfällige Fahrzeuge anzeigen}
+\umlusecase[x=0,y=4]{\#4: Fahrzeuge suchen}
 %
 % usecase-5
-\umlusecase[x=-1,y=8]{Statistik von jedem Fahrzeug}
+\umlusecase[x=0,y=8]{\#5: Fahrzeug reservieren}
 %
 % usecase-6
-\umlusecase[x=-4,y=10]{Verfügbares Fahrzeug finden}
+\umlusecase[x=0,y=-2]{\#6: Ein Fahrzeug orten}
 %
 % usecase-7
-\umlusecase[x=4,y=10]{Fahrzeug bestellen}
+\umlusecase[x=0,y=-4]{\#7: Fahrzeuge verwalten}
 %
-% usecase-8
-\umlusecase[x=0,y=12]{Ausstehende Zahlungen anzeigen}
-%
-% usecase-9
-\umlusecase[x=0,y=14]{Ein Fahrzeug orten}
-%
-% usecase-10
-\umlusecase[x=0,y=16]{Fahrzeug-Status ändern (Neu/Kaputt/Repariert)}
-%
-
 \end{umlsystem}
 
 \umlactor[x=-9,y=9]{Kunde}
-\umlactor[x=-9,y=6]{Disposition}
-\umlactor[x=-9,y=3]{Management}
-\umlactor[x=9,y=6]{Buchhaltung}
-\umlactor[x=9,y=3]{Garage}
+\umlactor[x=-7,y=0]{Disposition}
+\umlactor[x=8,y=3]{Management}
+\umlactor[x=-9,y=3]{Buchhaltung}
 
-\umlassoc{Kunde}{usecase-6}
-\umlassoc{Kunde}{usecase-7}
-\umlassoc{Disposition}{usecase-1}
+% Kunde
+\umlassoc{Kunde}{usecase-5}
+\umlassoc{Kunde}{usecase-1}
+\umlassoc{Kunde}{usecase-4}
+
+% Disposition
 \umlassoc{Disposition}{usecase-3}
-\umlassoc{Disposition}{usecase-9}
+\umlassoc{Disposition}{usecase-6}
+\umlassoc{Disposition}{usecase-7}
+
+\umlassoc{Buchhaltung}{Kunde}
+\umlassoc{Disposition}{Kunde}
+
+% Buchhaltung
 \umlassoc{Buchhaltung}{usecase-2}
-\umlassoc{Buchhaltung}{usecase-8}
-\umlassoc{Garage}{usecase-4}
-\umlassoc{Garage}{usecase-10}
-\umlassoc{Management}{usecase-5}
-\umlassoc{Management}{usecase-8}
+\umlassoc{Buchhaltung}{usecase-3}
+
+% Management
+\umlassoc{Management}{usecase-3}
 
 \end{tikzpicture}
-\caption{Example of Use case diagram using tikz-uml. Examlpe from the book Requirements Engineering by Axel van Lamsweerde.}
+\caption{Use Case Diagramm für Nutz AG}
 \end{figure}
 \end{center}
+
+
+
+\begin{tabular}{|l|p{13cm}|}
+	\hline
+	ID & 5\\
+	\hline
+  Name & Fahrzeug reservieren\\
+  \hline
+  Beschreibung & Ein Fahrzeug wird von einem Kunden direkt oder über die Disposition reserviert. \\
+  \hline
+  Actors & Kunde oder Disposition\\
+  \hline
+  Vorbedingungen & Fahrzeug muss während dieser Zeit verfügbar sein. Das Fahrzeug muss im fahrtauglichen Zustand sein.\\
+  \hline
+  \multirow{3}{*}{Normalablauf} & 1. Kunde wählt Fahrzeug aus \\
+  & 2. Kunde reserviert Fahrzeug \\
+  & 3. Kunde erhält Reservationsbestätigung \\
+  \hline
+  Nachbedingungen & Fahrzeug hat das Flag reserviert und die Disposition wird über die Buchung informiert.\\
+  \hline
+  Alternativabläufe & Falls Fahrzeug reserviert oder voraussichtlich in Reparatur ist, wird die Reservation abgebrochen. \\
+  \hline
+\end{tabular}
 \end{document}
