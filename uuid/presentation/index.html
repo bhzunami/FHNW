@@ -164,9 +164,14 @@
         It will not be rotated or scaled.
        
     -->
-    <div id="bored" class="step slide" data-x="-1000" data-y="-1500">
+    <div class="step" data-x="-500" data-y="-2000" data-scale="3">
+        <p>Responsive Enabling</p>
+    </div>
+
+    <div id="bored" class="step slide" data-x="-1500" data-y="-1500">
         <q>Responsive Enabling</q>
 	<p>Je nach Auswahl werden relevante Optionen aus- bzw. eingeblendet.</p>
+	<p>Die weitere Auswahlmöglichkeiten sind jederzeit sichtbar</p>
     </div>
 
     <!--
@@ -184,12 +189,17 @@
         Using classic `id`-based links like `#step-2` makes these links usable also in fallback mode.
         
     -->
-    <div class="step slide" data-x="0" data-y="-1500">
-        <q>Don't you think that presentations given <strong>in modern browsers</strong> shouldn't <strong>copy the limits</strong> of 'classic' slide decks?</q>
+    <div class="step slide" data-x="-500" data-y="-1500">
+        <q>Anwendung</q>
+	<p>Schrittweise Aktivierung des UI, ohne den Benutzer von Seite zu Seite zu schicken </p>
+	<p>Das gesamte Interface ist stabild und nicht dynamisch nach jedem Schritt</p>
     </div>
 
-    <div class="step slide" data-x="1000" data-y="-1500">
-        <q>Would you like to <strong>impress your audience</strong> with <strong>stunning visualization</strong> of your talk?</q>
+    <div class="step slide" data-x="500" data-y="-1500">
+        <q>Warum verwenden</q>
+	<p>Der Benutzer wird durch das Interface geleitet</p>
+	<p>UI selbst erzählt: Falls ich Checkbox anwähle, muss ich folgende Informationen eingeben</p>
+	<p>Der Benutzer kann die abgewählten Optionen nicht verstellen. Dies führt zu weniger Fehlermeldungen</p>
     </div>
 
     <!--
@@ -202,10 +212,9 @@
         down (4 times) to make it back to its correct size.
         
     -->
-    <div id="title" class="step" data-x="0" data-y="0" data-scale="4">
-        <span class="try">then you should try</span>
-        <h1>impress.js<sup>*</sup></h1>
-        <span class="footnote"><sup>*</sup> no rhyme intended</span>
+    <div id="title" class="step" data-x="1500" data-y="-1500" data-scale="1">
+        <q>Beispiel Browser disabled</q>
+        <span class="footnote"><img src="responsiveenabling1.png"/></span>
     </div>
 
     <!--
@@ -216,14 +225,9 @@
         element should be rotated by 90 degrees clockwise.
         
     -->
-    <div id="its" class="step" data-x="850" data-y="3000" data-rotate="90" data-scale="5">
-        <p>It's a <strong>presentation tool</strong> <br/>
-        inspired by the idea behind <a href="http://prezi.com">prezi.com</a> <br/>
-        and based on the <strong>power of CSS3 transforms and transitions</strong> in modern browsers.</p>
-    </div>
-
-    <div id="big" class="step" data-x="3500" data-y="2100" data-rotate="180" data-scale="6">
-        <p>visualize your <b>big</b> <span class="thoughts">thoughts</span></p>
+    <div id="its" class="step" data-x="2500" data-y="-1500">
+	<q>Beispiel Browser enabled</q>
+        <img src="responsiveenabling2.png" />
     </div>
 
     <!--
@@ -235,8 +239,8 @@
         positioned far away from us (by 3000px).
         
     -->
-    <div id="tiny" class="step" data-x="2825" data-y="2325" data-z="-3000" data-rotate="300" data-scale="1">
-        <p>and <b>tiny</b> ideas</p>
+    <div class="step" data-x="-500" data-y="1000" data-scale="3">
+        <p>Grid of equals</p>
     </div>
 
     <!--
@@ -259,21 +263,16 @@
         Only one current step has the `present` class.
         
     -->
-    <div id="ing" class="step" data-x="3500" data-y="-850" data-rotate="270" data-scale="6">
-        <p>by <b class="positioning">positioning</b>, <b class="rotating">rotating</b> and <b class="scaling">scaling</b> them on an infinite canvas</p>
+    <div class="step slide" data-x="-1500" data-y="1500" data-scale="1">
+        <q>Bla bla bla</q>
     </div>
 
-    <div id="imagination" class="step" data-x="6700" data-y="-300" data-scale="6">
-        <p>the only <b>limit</b> is your <b class="imagination">imagination</b></p>
+    <div class="step slide" data-x="-500" data-y="1500" data-scale="1">
+        <q>Bla bla bla2</q>
     </div>
 
-    <div id="source" class="step" data-x="6300" data-y="2000" data-rotate="20" data-scale="4">
-        <p>want to know more?</p>
-        <q><a href="http://github.com/bartaz/impress.js">use the source</a>, Luke!</q>
-    </div>
-
-    <div id="one-more-thing" class="step" data-x="6000" data-y="4000" data-scale="2">
-        <p>one more thing...</p>
+    <div class="step" data-x="2500" data-y="0" data-scale="10">
+        <q>Design Patterns</q>
     </div>
 
     <!--
@@ -288,11 +287,11 @@
         as `data-rotate` (these two are basically aliases).
         
     -->
-    <div id="its-in-3d" class="step" data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+<!--    <div id="its-in-3d" class="step" data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
         <p><span class="have">have</span> <span class="you">you</span> <span class="noticed">noticed</span> <span class="its">it's</span> <span class="in">in</span> <b>3D<sup>*</sup></b>?</p>
         <span class="footnote">* beat that, prezi ;)</span>
     </div>
-
+-->
     <!--
         
         So to make a summary of all the possible attributes used to position presentation steps, we have:
@@ -308,8 +307,8 @@
         CSS transfrom docs: https://developer.mozilla.org/en/CSS/transform
         
     -->
-    <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
-    </div>
+    <!--<div id="overview" class="step" data-x="2000" data-y="0" data-scale="6">
+    </div>-->
 
 </div>
 
@@ -337,7 +336,7 @@
     Just sayin' ;)
     
 -->
-<div class="hint">
+<!--<div class="hint">
     <p>Use a spacebar or arrow keys to navigate</p>
 </div>
 <script>
@@ -345,7 +344,7 @@ if ("ontouchstart" in document.documentElement) {
     document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
 }
 </script>
-
+-->
 <!--
     
     Last, but not least.
