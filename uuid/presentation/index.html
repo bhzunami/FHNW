@@ -68,10 +68,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>impress.js | presentation tool based on the power of CSS3 transforms and transitions in modern browsers | by Bartek Szopka @bartaz</title>
-    
-    <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
-    <meta name="author" content="Bartek Szopka" />
+    <title>Design Patterns</title>
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
 
@@ -147,6 +144,9 @@
 -->
 <div id="impress">
 
+    <div class="step" data-x="1000" data-y="0" data-scale="5">
+        <q>Design Patterns</q>
+    </div>
     <!--
         
         Here is where interesting thing start to happen.
@@ -170,8 +170,10 @@
 
     <div id="bored" class="step slide" data-x="-1500" data-y="-1500">
         <q>Responsive Enabling</q>
-	<p>Je nach Auswahl werden relevante Optionen aus- bzw. eingeblendet.</p>
-	<p>Die weitere Auswahlmöglichkeiten sind jederzeit sichtbar</p>
+	<ul>
+    <li>Je nach Auswahl werden relevante Optionen aus- bzw. eingeblendet.</li>
+	<li>Die weitere Auswahlmöglichkeiten sind jederzeit sichtbar</li>
+    </ul>
     </div>
 
     <!--
@@ -191,15 +193,19 @@
     -->
     <div class="step slide" data-x="-500" data-y="-1500">
         <q>Anwendung</q>
-	<p>Schrittweise Aktivierung des UI, ohne den Benutzer von Seite zu Seite zu schicken </p>
-	<p>Das gesamte Interface ist stabild und nicht dynamisch nach jedem Schritt</p>
+    <ul>
+	<li>Schrittweise Aktivierung des UI, ohne den Benutzer von Seite zu Seite zu schicken </li>
+	<li>Das gesamte Interface ist stabild und nicht dynamisch nach jedem Schritt</li>
+    </ul>
     </div>
 
     <div class="step slide" data-x="500" data-y="-1500">
         <q>Warum verwenden</q>
-	<p>Der Benutzer wird durch das Interface geleitet</p>
-	<p>UI selbst erzählt: Falls ich Checkbox anwähle, muss ich folgende Informationen eingeben</p>
-	<p>Der Benutzer kann die abgewählten Optionen nicht verstellen. Dies führt zu weniger Fehlermeldungen</p>
+        <ul>
+	<li>Der Benutzer wird durch das Interface geleitet</li>
+	<li>UI selbst erzählt: Falls ich Checkbox anwähle, muss ich folgende Informationen eingeben</li>
+	<li>Der Benutzer kann die abgewählten Optionen nicht verstellen. Dies führt zu weniger Fehlermeldungen</li>
+    </ul>
     </div>
 
     <!--
@@ -225,7 +231,7 @@
         element should be rotated by 90 degrees clockwise.
         
     -->
-    <div id="its" class="step" data-x="2500" data-y="-1500">
+    <div class="step" data-x="2500" data-y="-1500">
 	<q>Beispiel Browser enabled</q>
         <img src="responsiveenabling2.png" />
     </div>
@@ -243,38 +249,38 @@
         <p>Grid of equals</p>
     </div>
 
-    <!--
-        
-        This step here doesn't introduce anything new when it comes to data attributes, but you
-        should notice in the demo that some words of this text are being animated.
-        It's a very basic CSS transition that is applied to the elements when this step element is
-        reached.
-        
-        At the very beginning of the presentation all step elements are given the class of `future`.
-        It means that they haven't been visited yet.
-        
-        When the presentation moves to given step `future` is changed to `present` class name.
-        That's how animation on this step works - text moves when the step has `present` class.
-        
-        Finally when the step is left the `present` class is removed from the element and `past`
-        class is added.
-        
-        So basically every step element has one of three classes: `future`, `present` and `past`.
-        Only one current step has the `present` class.
-        
-    -->
+
     <div class="step slide" data-x="-1500" data-y="1500" data-scale="1">
-        <q>Bla bla bla</q>
+        <q>Grid of Equals</q>
+        <ul>
+        <li>Anzeige von Elementen in einem Raster</li>
+        <li>Gleich viel Platz für alle Elemente</li>
+        <li>Verlinkt mit Detailseite</li>
+        </ul>
     </div>
 
     <div class="step slide" data-x="-500" data-y="1500" data-scale="1">
-        <q>Bla bla bla2</q>
+        <q>Anwendung</q>
+        <ul>
+        <li>Bildergalerie</li>
+        <li>Anzeige von Produkten mit Zusatzinfos</li>
+        <li>Kategorien mit Unterkategorien</li>
+        </ul>
     </div>
 
-    <div class="step" data-x="2500" data-y="0" data-scale="10">
-        <q>Design Patterns</q>
+    <div class="step slide" data-x="500" data-y="1500" data-scale="1">
+        <q>Warum verwenden</q>
+        <ul>
+        <li>Geordnete Anzeige der Daten</li>
+        <li>Jedes Element ist gleich wichtig</li>
+        </ul>
     </div>
 
+
+    <div class="step" data-x="1500" data-y="1500">
+    <q>Beispiel digitec.ch</q>
+        <img src="gridofequals.png" />
+    </div>
     <!--
         
         And the last one shows full power and flexibility of impress.js.
