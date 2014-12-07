@@ -70,3 +70,41 @@ a1 = abs(double(int(f-g,s(2),s(3))))
 a0+a1+a2+...
 
 
+% Tangente an 2 Funktionen
+syms x xf xg
+f =   % 1+(x-1)^
+g =   % -1-0.5*(x+1)^2
+
+% Graphen anzeigen um zu sehen, ob es überhaupt möglich ist oder ein Bild zu bekommen
+ezplot(f)
+hold;
+p = ezplot(g)
+set(p, 'color', 'red')
+
+% Gleichungen nach einem xg oder xf auflösen? 
+xgg = solve(subs(diff(f),x,xf) - subs(diff(g), x, xg),xg)
+
+% Tangenten gleichung für eine Tangente eingeben
+Tf = subs(f,x,xf) + subs(diff(f),x,xf) * (x-xf)
+
+%% KEINE AHNUNG
+%% Überlegung
+% 1. Beide Tangenten müssen die gleiche Steigung haben
+%  -> diff(Tf) == diff(Tg)
+% 2. Die Tangenge f muss durch einen Punkt, der funktion g
+xf0 = solve(subs(Tf,x,xgg) - subs(g,x,xgg),xf)
+% RESULTAT
+Tf1 = subs(Tf, xf, xf0(1))
+Tf2 = subs(Tf, xf, xf0(2))
+
+%% Graphische Darstellung der beiden Tangenten
+
+ezplot(f)
+hold;
+ezplot(g)
+p = ezplot(Tf1)
+set(p,'color','red')
+ezplot(Tf2)
+set(p,'color','green')
+
+
