@@ -1,8 +1,17 @@
 package ch.fhnw.bayes;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Map.Entry;
+import java.util.Properties;
+
+import javax.mail.BodyPart;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.Session;
+import javax.mail.internet.MimeMessage;
 
 import org.jsoup.Jsoup;
 
@@ -31,7 +40,7 @@ public class SpamFilter {
 	/**
 	 * The alpha value for equalizing the word maps.
 	 */
-	private final static double ALPHA = 0.1;
+	private final static double ALPHA = 0.5;
 
 	/**
 	 * Starter method.
@@ -72,7 +81,7 @@ public class SpamFilter {
 		System.out.print("Learning hams...\t");
 		File aHamLearnFolder = new File("src/main/resources/ham-anlern");
 		for (File aMail : aHamLearnFolder.listFiles()) {
-			ham.addWords(getWordsFromFile(aMail));
+		    ham.addWords(readMail(aMail).replaceAll("[^A-Za-z]", " ").split("\\s+"));
 			totalHamMails++;
 		}
 		System.out.println(totalHamMails + "\tham mails read.");
@@ -81,7 +90,7 @@ public class SpamFilter {
 		System.out.print("Learning spams...\t");
 		File aSpamLearnFolder = new File("src/main/resources/spam-anlern");
 		for (File aMail : aSpamLearnFolder.listFiles()) {
-			spam.addWords(getWordsFromFile(aMail));
+			spam.addWords(readMail(aMail).replaceAll("[^A-Za-z]", " ").split("\\s+"));
 			totalSpamMails++;
 		}
 		System.out.println(totalSpamMails + "\tspam mails read.");
@@ -205,6 +214,64 @@ public class SpamFilter {
 		
 		assert(ham.size() == spam.size());
 
+	}
+	/**
+	 * Read the mail and get the content of the mail as string back
+	 * @param mail The Mail to read
+	 * @return message of the mail
+	 */
+    private static String readMail(File mail) {
+        Properties props = new Properties();
+        Session session = Session.getDefaultInstance(props);
+        MimeMessage email = null;
+        String message = "";
+        try {
+            FileInputStream fis = new FileInputStream(mail);
+            email = new MimeMessage(session, fis);
+
+            Object content = email.getContent();
+            if (content instanceof Multipart) {
+                BodyPart clearTextPart = null;
+                BodyPart htmlTextPart = null;
+
+                Multipart c = (Multipart)content;
+                // Get the types
+                int count = c.getCount();
+
+                // Iterate over the Mimetypes
+                for(int i=0; i<count; i++) {
+                    BodyPart part =  c.getBodyPart(i);
+                    if(part.isMimeType("text/plain")) {
+                        clearTextPart = part;
+                        break;
+                    }
+                    else if(part.isMimeType("text/html")) {
+                        htmlTextPart = part;
+                    }
+                }
+
+                if (clearTextPart != null) {
+                    message = (String) clearTextPart.getContent();
+                } else if (htmlTextPart != null) {
+                    String html = (String) htmlTextPart.getContent();
+                    message = Jsoup.parse(html).text();
+
+                 // a simple text message
+                } else if (content instanceof String) {
+                    message = (String) content;
+                }
+            }
+
+        } catch (MessagingException e) {
+            System.out.println("TEST");
+        } catch (FileNotFoundException e) {
+            System.out.println("TEST");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return message;
 	}
 
 }
