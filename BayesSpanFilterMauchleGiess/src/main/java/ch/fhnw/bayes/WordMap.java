@@ -2,6 +2,8 @@ package ch.fhnw.bayes;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,7 +15,7 @@ import java.util.List;
  *
  */
 @SuppressWarnings("serial")
-public class WordMap extends HashMap<String, Double> {
+public class WordMap extends HashMap<String, Double> implements Comparator<String>{
 
 	/**
 	 * Constructor
@@ -37,13 +39,15 @@ public class WordMap extends HashMap<String, Double> {
 
 	/**
 	 * Adds a word to the word map and raises the value by 1.
-	 * @param inWord the word.
+	 * 
+	 * @param inWord
+	 *            the word.
 	 */
-	public void addWord(String inWord){
+	public void addWord(String inWord) {
 		Double anAlreadySavedWordValue = get(inWord);
 		put(inWord, anAlreadySavedWordValue + 1);
 	}
-	
+
 	/**
 	 * Reads a text file and adds all words in this text file to the word map.
 	 * 
@@ -95,6 +99,47 @@ public class WordMap extends HashMap<String, Double> {
 			System.out.println();
 		}
 		System.out.println();
+	}
+
+	/**
+	 * Gets the top ham or spam words.
+	 * 
+	 * @param inTop
+	 *            the integer indication how many words should be returned e.g.
+	 *            top 10, or top 20, ...
+	 * @return the list of top words.
+	 */
+	public List<String> getTop(int inTop) {
+		List<String> aListOfTopWords = new ArrayList<>();
+		List<Entry<String,Double>> aListOfMapEntries = new ArrayList<>();
+		for(Entry<String, Double> anEntry : entrySet()){
+			aListOfMapEntries.add(anEntry);
+		}
+		Collections.sort(aListOfMapEntries, new Comparator<Entry<String, Double>>(){
+
+			@Override
+			public int compare(java.util.Map.Entry<String, Double> o1, java.util.Map.Entry<String, Double> o2) {
+				return Double.compare(o1.getValue(), o2.getValue()) * -1;
+			}
+		
+		});
+		for(int index = 0; index < inTop; index++){
+			aListOfTopWords.add(aListOfMapEntries.get(index).getKey());
+		}
+		return aListOfTopWords;
+	}
+
+	/**
+	 * ${@inheritDoc}
+	 */
+	@Override
+	public int compare(String o1, String o2) {
+		if (get(o1) >= get(o2)) {
+            return -1;
+        } else {
+            return 1;
+        } 
+		// returning 0 would merge keys
 	}
 
 }

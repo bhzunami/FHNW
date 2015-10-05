@@ -31,7 +31,7 @@ public class SpamFilter {
 	/**
 	 * The alpha value for equalizing the word maps.
 	 */
-	private final static double ALPHA = 0.1;
+	private final static double ALPHA = 0.2;
 
 	/**
 	 * Starter method.
@@ -50,6 +50,10 @@ public class SpamFilter {
 		// learn phase
 		System.out.println("========= Learn Phase =========");
 		learn();
+		
+		// print top spam words
+		System.out.println(spam.getTop(10));
+		
 		// If words exist only in ham or spam, word maps must be manipulated.
 		// For more info see javadoc of this method.
 		equalizeWordMaps();
@@ -94,8 +98,22 @@ public class SpamFilter {
 	 * @throws IOException
 	 */
 	private static void calibrate() throws IOException {
-		System.out.println("Calculation spam probability of hams...\t");
+		
+		// to words from mails to word list
 		File aHamLearnFolder = new File("src/main/resources/ham-kalibrierung");
+		for (File aMail : aHamLearnFolder.listFiles()) {
+			ham.addWords(getWordsFromFile(aMail));
+			totalHamMails++;
+		}
+		File aSpamLearnFolder = new File("src/main/resources/spam-kalibrierung");
+		for (File aMail : aSpamLearnFolder.listFiles()) {
+			spam.addWords(getWordsFromFile(aMail));
+			totalSpamMails++;
+		}
+		
+		equalizeWordMaps();
+		
+		System.out.println("Calculation spam probability of hams...\t");
 		for (File aMail : aHamLearnFolder.listFiles()) {
 			Double p = calculateProbabiltity(aMail);
 			System.out.println(p*100 + " %");
@@ -104,7 +122,6 @@ public class SpamFilter {
 		System.out.println();
 		
 		System.out.println("Calculation spam probability of spams...\t");
-		File aSpamLearnFolder = new File("src/main/resources/spam-kalibrierung");
 		for (File aMail : aSpamLearnFolder.listFiles()) {
 			Double p = calculateProbabiltity(aMail);
 			System.out.println(p*100 + " %");
@@ -121,32 +138,33 @@ public class SpamFilter {
 	 *             if an I/O Exception occurs
 	 */
 	private static Double calculateProbabiltity(File inMail) throws IOException {
+		
+		
+		
 		Double probabilityOfSpam = 0.5;
 
 		// Get all words in this mail.
 		String[] aListOfWords = getWordsFromFile(inMail);
 		
+		Double counter = 1.0;
+		Double denominatorPart2 = 1.0;
 		// check if there are words that are neither in ham nor in spam
 		for (String aWord : aListOfWords) {
 			if(ham.get(aWord) == null && spam.get(aWord) == null){
-				ham.put(aWord, (double) totalHamMails);
-				spam.put(aWord, (double) totalSpamMails);
+				continue;
 			}
-		}
-
-		Double counter = 1.0;
-		for (String aWord : aListOfWords) {
+			
 			counter *= spam.getCount(aWord) / totalSpamMails;
+			denominatorPart2 *= ham.getCount(aWord) / totalHamMails;
 		}
 		
 		Double denominator = 0.0;
 		
 		Double denominatorPart1 = counter;
 		
-		Double denominatorPart2 = 1.0;
-		for (String aWord : aListOfWords) {
-			denominatorPart2 *= ham.getCount(aWord) / totalHamMails;
-		}
+//		for (String aWord : aListOfWords) {
+//			denominatorPart2 *= ham.getCount(aWord) / totalHamMails;
+//		}
 		
 		denominator = denominatorPart1 + denominatorPart2;
 		
