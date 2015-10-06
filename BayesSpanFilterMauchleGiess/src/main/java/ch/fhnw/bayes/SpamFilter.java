@@ -65,40 +65,12 @@ public class SpamFilter {
 	}
 
 	/**
-	 * Starter method.
-	 * 
-	 * @param args         an array of arguments.
-	 * @throws IOException when an I/O Problem occurs.
-	 */
-	public static void main(String[] args) throws IOException {
-	    
-	    SpamFilter sf = new SpamFilter();
-
-		// learn phase
-		System.out.println("========= Learn Phase =========");
-		sf.learn();
-		
-		// print top spam words
-		System.out.println(sf.getMostPossibleSpamWords(50));
-		
-		// If words exist only in ham or spam, word maps must be manipulated.
-		// For more info see javadoc of this method.
-		sf.equalizeWordMaps();
-		
-		// calibrate phase
-		System.out.println("========= Calibration Phase =========");
-		sf.calibrate();
-		
-		
-	}
-
-	/**
 	 * Fill word maps with example words.
 	 * 
 	 * @throws IOException
 	 *             when an I/O Problem occurs.
 	 */
-	private void learn() throws IOException {
+	public void learn() throws IOException {
 		// ham examples
 		System.out.print("Learning hams...\t");
 		File aHamLearnFolder = new File("src/main/resources/ham-anlern");
@@ -124,7 +96,7 @@ public class SpamFilter {
 	 * 
 	 * @throws IOException
 	 */
-	private void calibrate() throws IOException {
+	public void calibrate() throws IOException {
 		
 		// to words from mails to word list
 		File aHamLearnFolder = new File("src/main/resources/ham-kalibrierung");
@@ -225,7 +197,7 @@ public class SpamFilter {
 	 * So this method will equalize the word maps so each word map has the same
 	 * words.
 	 */
-	private void equalizeWordMaps() {
+	public void equalizeWordMaps() {
 
 		// for each word only existing in ham add same word to spam with alpha
 		// value
@@ -310,7 +282,7 @@ public class SpamFilter {
         return message;
 	}
     
-    private List<String> getMostPossibleSpamWords(int count) {
+    public List<String> getMostPossibleSpamWords(int count) {
         List<String> mostPossibleSpamWords = new ArrayList<>();
         PQsort pqs = new PQsort();
         PriorityQueue<Entry<String,Double>> pq = new PriorityQueue<>(10, pqs);
