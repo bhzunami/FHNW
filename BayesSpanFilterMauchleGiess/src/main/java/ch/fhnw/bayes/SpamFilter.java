@@ -29,7 +29,7 @@ public class SpamFilter {
     /**
      * The alpha value for equalizing the word maps.
      */
-    private final static double ALPHA = 0.2;
+    private final static double ALPHA = 0.1;
     private final static String[] STOPWORDS = {
         "an", "and", "are", "as", "at", "by", "can", "do", "for", "from",
         "get", "has", "how", "if", "in", "is", "it", "no", "not", "of",
@@ -165,36 +165,32 @@ public class SpamFilter {
 	 *             if an I/O Exception occurs
 	 */
 	private Double calculateProbabiltity(File inMail) throws IOException {
-		Double probabilityOfSpam = 0.5;
-
 		// Get all words in this mail.
 		String[] aListOfWords = getWordsFromFile(inMail);
 		
+		// Get most spam mails
+		List<String> mostPossibleSpamWords = getMostPossibleSpamWords(300);
+		
 		Double counter = 1.0;
 		Double denominatorPart2 = 1.0;
+		
+		
 		// check if there are words that are neither in ham nor in spam
 		for (String aWord : aListOfWords) {
 			if(ham.get(aWord) == null && spam.get(aWord) == null){
 				continue;
 			}
-			if(getMostPossibleSpamWords(50).contains(aWord) == false){
+			if(mostPossibleSpamWords.contains(aWord) == false){
 				continue;
 			}
 			counter *= spam.getCount(aWord) / totalSpamMails;
 			denominatorPart2 *= ham.getCount(aWord) / totalHamMails;
 		}
 		
-		Double denominator = 0.0;
-		
 		Double denominatorPart1 = counter;
+		Double denominator = denominatorPart1 + denominatorPart2;
 		
-//		for (String aWord : aListOfWords) {
-//			denominatorPart2 *= ham.getCount(aWord) / totalHamMails;
-//		}
-		
-		denominator = denominatorPart1 + denominatorPart2;
-		
-		probabilityOfSpam = counter / denominator;
+		Double probabilityOfSpam = counter / denominator;
 		
 		return probabilityOfSpam;
 	}
@@ -320,7 +316,7 @@ public class SpamFilter {
         PriorityQueue<Entry<String,Double>> pq = new PriorityQueue<>(10, pqs);
         for (Map.Entry<String, Double> entry : spam.entrySet()) {
             
-            if(ham.get(entry.getKey()) != null || Arrays.asList(STOPWORDS).contains(entry.getKey())) {
+            if(Arrays.asList(STOPWORDS).contains(entry.getKey())) {
                 continue;
             }
             pq.add(entry);
