@@ -90,6 +90,10 @@ public class SpamFilter {
 		sf.calibrate();
 		
 		
+		// test
+		System.out.println("========== Test Phase ===========");
+		sf.test();
+		
 	}
 
 	/**
@@ -133,6 +137,41 @@ public class SpamFilter {
 			this.totalHamMails++;
 		}
 		File aSpamLearnFolder = new File("src/main/resources/spam-kalibrierung");
+		for (File aMail : aSpamLearnFolder.listFiles()) {
+			this.spam.addWords(getWordsFromFile(aMail));
+			this.totalSpamMails++;
+		}
+		
+		equalizeWordMaps();
+		
+		System.out.println("Calculation spam probability of hams...\t");
+		for (File aMail : aHamLearnFolder.listFiles()) {
+			Double p = calculateProbabiltity(aMail);
+			System.out.println(p*100 + " %");
+		}
+		
+		System.out.println();
+		
+		System.out.println("Calculation spam probability of spams...\t");
+		for (File aMail : aSpamLearnFolder.listFiles()) {
+			Double p = calculateProbabiltity(aMail);
+			System.out.println(p*100 + " %");
+		}
+	}
+	
+	/**
+	 * 
+	 * @throws IOException
+	 */
+	private void test() throws IOException {
+		
+		// to words from mails to word list
+		File aHamLearnFolder = new File("src/main/resources/ham-test");
+		for (File aMail : aHamLearnFolder.listFiles()) {
+			this.ham.addWords(getWordsFromFile(aMail));
+			this.totalHamMails++;
+		}
+		File aSpamLearnFolder = new File("src/main/resources/spam-test");
 		for (File aMail : aSpamLearnFolder.listFiles()) {
 			this.spam.addWords(getWordsFromFile(aMail));
 			this.totalSpamMails++;
