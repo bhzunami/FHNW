@@ -11,6 +11,7 @@ import java.util.List;
  * numeric value represents in how many mails this word exists.
  * 
  * @author tobias
+ * @author Nicolas Mauchle
  *
  */
 @SuppressWarnings("serial")
@@ -60,7 +61,7 @@ public class WordMap extends HashMap<String, Double> implements Comparator<Strin
 
 		// list of words of the current email that has
 		// been added to this map.
-		List<String> aListOfAddedWords = new ArrayList<>();
+		List<String> aListOfAddedWords = new ArrayList<String>();
 
 		// add to map
 		for (String aWord : inArrayOfWords) {
@@ -96,6 +97,7 @@ public class WordMap extends HashMap<String, Double> implements Comparator<Strin
 
 	/**
 	 * Prints out a word map to console.
+	 * Helper method
 	 */
 	public void print() {
 		for (Entry<String, Double> anEntry : entrySet()) {
@@ -108,7 +110,6 @@ public class WordMap extends HashMap<String, Double> implements Comparator<Strin
 	/**
 	 * ${@inheritDoc}
 	 */
-	@Override
 	public int compare(String o1, String o2) {
 		if (get(o1) >= get(o2)) {
             return -1;

@@ -5,13 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
-import java.util.PriorityQueue;
 import java.util.Properties;
 
 import javax.mail.BodyPart;
@@ -21,21 +15,19 @@ import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 
 import org.jsoup.Jsoup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sun.mail.util.DecodingException;
 
 public class SpamFilter {
-
+    
+    private static final Logger logger = LoggerFactory.getLogger(SpamFilter.class);
+    
     /**
      * The alpha value for equalizing the word maps.
      */
-    private final static double ALPHA = 0.1;
-    private final static String[] STOPWORDS = {
-        "an", "and", "are", "as", "at", "by", "can", "do", "for", "from",
-        "get", "has", "how", "if", "in", "is", "it", "no", "not", "of",
-        "on", "or", "out", "over", "so", "that", "the", "this", "to",
-        "was", "what", "who", "with",
-       };
+    private final static double ALPHA = 0.5;
     
 	/**
 	 * A map of ham words.
@@ -57,12 +49,17 @@ public class SpamFilter {
 	 */
 	private int totalSpamMails;
 	
+	/**
+	 * Constructor of the Spamfilter
+	 * Set the initials values for total Ham and total Spam
+	 */
 	public SpamFilter() {
 	    this.ham = new WordMap();
 	    this.spam = new WordMap();
 	    this.totalHamMails = 0;
 	    this.totalSpamMails = 0;
 	}
+	
 
 	/**
 	 * Fill word maps with example words.
@@ -70,60 +67,95 @@ public class SpamFilter {
 	 * @throws IOException
 	 *             when an I/O Problem occurs.
 	 */
-	public void learn() throws IOException {
-		// ham examples
-		System.out.print("Learning hams...\t");
+	public void train() throws IOException {
+		// ham
+	    logger.debug("Learning hams");
 		File aHamLearnFolder = new File("src/main/resources/ham-anlern");
 		for (File aMail : aHamLearnFolder.listFiles()) {
-		    this.ham.addWords(readMail(aMail).replaceAll("[^A-Za-z]", " ").split("\\s+"));
-			this.totalHamMails++;
+		    this.learnHam(aMail);
 		}
-		System.out.println(totalHamMails + "\tham mails read.");
-
-		// spam examples
-		System.out.print("Learning spams...\t");
+		
+		aHamLearnFolder = new File("src/main/resources/ham-test");
+        for (File aMail : aHamLearnFolder.listFiles()) {
+            this.learnHam(aMail);
+        }
+        
+        aHamLearnFolder = new File("src/main/resources/ham-kalibrierung");
+        for (File aMail : aHamLearnFolder.listFiles()) {
+            this.learnHam(aMail);
+        }
+		
+		logger.debug("{} ham mails read", this.totalHamMails);
+		logger.debug("Learning spams");
+		
+		// Spam
 		File aSpamLearnFolder = new File("src/main/resources/spam-anlern");
+		// Read the mails and remove all chars which are not a caractor or a number and 
+        // split in words
 		for (File aMail : aSpamLearnFolder.listFiles()) {
-			this.spam.addWords(readMail(aMail).replaceAll("[^A-Za-z]", " ").split("\\s+"));
-			this.totalSpamMails++;
+		    this.learnSpam(aMail);
 		}
-		System.out.println(totalSpamMails + "\tspam mails read.");
-
-		System.out.println();
+		logger.debug("{} spam mails read", this.totalSpamMails);
+		
+		
+		
+        // If words exist only in ham or spam, word maps must be manipulated.
+        // For more info see javadoc of this method.
+        equalizeWordMaps();
 	}
 	
+	public void learnHam(File file) {
+	    try {
+	        this.ham.addWords( readMail(file).split("\\s+") );
+	        this.totalHamMails++;
+	    } catch (IOException e) {
+	        logger.error("Could not add file to Ham list {}", file);
+	    }
+	    
+	}
+	
+	public void learnSpam(File file) {
+        try {
+            this.spam.addWords( readMail(file).split("\\s+") );
+            this.totalSpamMails++;
+        } catch (IOException e) {
+            logger.error("Could not add file to Spam list {}", file);
+        }
+        
+    }
+		
 	/**
-	 * 
+	 * Only in testing mode necessary for the calibration of
+	 * - number of significant spam words
+	 * - Alpha for a word who does not exists in ham or spam
 	 * @throws IOException
 	 */
 	public void calibrate() throws IOException {
-		
 		// to words from mails to word list
 		File aHamLearnFolder = new File("src/main/resources/ham-kalibrierung");
 		for (File aMail : aHamLearnFolder.listFiles()) {
-			this.ham.addWords(getWordsFromFile(aMail));
+			this.ham.addWords(readMail(aMail).split("\\s+"));
 			this.totalHamMails++;
 		}
+		
 		File aSpamLearnFolder = new File("src/main/resources/spam-kalibrierung");
 		for (File aMail : aSpamLearnFolder.listFiles()) {
-			this.spam.addWords(getWordsFromFile(aMail));
+			this.spam.addWords( readMail(aMail).split("\\s+") );
 			this.totalSpamMails++;
 		}
 		
 		equalizeWordMaps();
 		
-		System.out.println("Calculation spam probability of hams...\t");
+		logger.debug("Calculation spam probability of hams");
 		for (File aMail : aHamLearnFolder.listFiles()) {
 			Double p = calculateProbabiltity(aMail);
-			System.out.println(p*100 + " %");
+			logger.debug("Spam possibility: {}%", p*100);
 		}
 		
-		System.out.println();
-		
-		System.out.println("Calculation spam probability of spams...\t");
+		logger.debug("Calculation spam probability of spams");
 		for (File aMail : aSpamLearnFolder.listFiles()) {
 			Double p = calculateProbabiltity(aMail);
-			System.out.println(p*100 + " %");
+			logger.debug("Spam possibility: {}%", p*100);
 		}
 	}
 	
@@ -132,33 +164,19 @@ public class SpamFilter {
 	 * @throws IOException
 	 */
 	public void test() throws IOException {
-		
 		// to words from mails to word list
+	    logger.debug("Calculation spam probability of hams...");
 		File aHamLearnFolder = new File("src/main/resources/ham-test");
 		for (File aMail : aHamLearnFolder.listFiles()) {
-			this.ham.addWords(getWordsFromFile(aMail));
-			this.totalHamMails++;
-		}
-		File aSpamLearnFolder = new File("src/main/resources/spam-test");
-		for (File aMail : aSpamLearnFolder.listFiles()) {
-			this.spam.addWords(getWordsFromFile(aMail));
-			this.totalSpamMails++;
-		}
-		
-		equalizeWordMaps();
-		
-		System.out.println("Calculation spam probability of hams...\t");
-		for (File aMail : aHamLearnFolder.listFiles()) {
 			Double p = calculateProbabiltity(aMail);
-			System.out.println(p*100 + " %");
+			logger.debug("[TEST] HAM: Spam possibility: {} %", p*100);			
 		}
 		
-		System.out.println();
-		
-		System.out.println("Calculation spam probability of spams...\t");
+		logger.debug("Calculation spam probability of spams...");
+	    File aSpamLearnFolder = new File("src/main/resources/spam-test");
 		for (File aMail : aSpamLearnFolder.listFiles()) {
 			Double p = calculateProbabiltity(aMail);
-			System.out.println(p*100 + " %");
+			logger.debug("[TEST] SPAM: Spam possibility: {} %", p*100);
 		}
 	}
 
@@ -171,57 +189,25 @@ public class SpamFilter {
 	 * @throws IOException
 	 *             if an I/O Exception occurs
 	 */
-	private Double calculateProbabiltity(File inMail) throws IOException {
+	public Double calculateProbabiltity(File inMail) throws IOException {
 		// Get all words in this mail.
-		String[] aListOfWords = getWordsFromFile(inMail);
-		
-		// Get most spam mails
-		List<String> mostPossibleSpamWords = getMostPossibleSpamWords(300);
-		
-		Double counter = 1.0;
+		String[] aListOfWords = readMail(inMail).split("\\s+");
+		Double s = 1.0;
+		Double h = 1.0;
 		Double denominatorPart2 = 1.0;
-		
 		
 		// check if there are words that are neither in ham nor in spam
 		for (String aWord : aListOfWords) {
 			if(ham.get(aWord) == null && spam.get(aWord) == null){
 				continue;
 			}
-			if(mostPossibleSpamWords.contains(aWord) == false){
-				continue;
-			}
-			counter *= spam.getCount(aWord) / totalSpamMails;
-			denominatorPart2 *= ham.getCount(aWord) / totalHamMails;
+			h = ham.getCount(aWord) / totalHamMails;
+			s = spam.getCount(aWord) / totalSpamMails;
+			
+			denominatorPart2 *= h/s;
 		}
-		
-		Double denominatorPart1 = counter;
-		Double denominator = denominatorPart1 + denominatorPart2;
-		
-		Double probabilityOfSpam = counter / denominator;
-		
-		return probabilityOfSpam;
-	}
-
-	/**
-	 * Reads a text file and returns an array of containing words.
-	 * 
-	 * @param inFile
-	 *            the text file for which the words should be extracted.
-	 * @throws IOException
-	 *             if an I/O Exception occurs
-	 * @return the array of words containing in this file.
-	 */
-	private String[] getWordsFromFile(File inFile) throws IOException {
-		// Convert html to plain text.
-		String aPlainText = Jsoup.parse(inFile, "UTF-8").text();
-
-		// remove all special characters and punctuations
-		aPlainText = aPlainText.replaceAll("[^A-Za-z]", " ");
-
-		// split words by space
-		String[] anArrayOfWords = aPlainText.split("\\s+");
-
-		return anArrayOfWords;
+				
+		return 1 / (1 + denominatorPart2);
 	}
 
 	/**
@@ -256,91 +242,76 @@ public class SpamFilter {
 	/**
 	 * Read the mail and get the content of the mail as string back
 	 * @param mail The Mail to read
-	 * @return message of the mail
+	 * @return message as string of the mail
 	 */
-    private String readMail(File mail) {
+    public String readMail(File mail) {
+        // Used for Session
         Properties props = new Properties();
+        // Create Mail Session
         Session session = Session.getDefaultInstance(props);
+        
         MimeMessage email = null;
         String message = "";
         try {
+            // Read Mail
             FileInputStream fis = new FileInputStream(mail);
             email = new MimeMessage(session, fis);
             
+            // Get Content to check if Multipart or text only
             Object content = email.getContent();
             
             if (content instanceof Multipart) {
+                // Prepare Content
                 BodyPart clearTextPart = null;
                 BodyPart htmlTextPart = null;
-
-                Multipart c = (Multipart)content;
+                
+                // Get the content
+                Multipart c = (Multipart) content;
                 // Get the types
                 int count = c.getCount();
 
                 // Iterate over the Mimetypes
                 for(int i=0; i<count; i++) {
                     BodyPart part =  c.getBodyPart(i);
+                    
+                    // If we are in the plain mode get the plain text
                     if(part.isMimeType("text/plain")) {
                         clearTextPart = part;
                         break;
                     }
+                    // else get the html part
                     else if(part.isMimeType("text/html")) {
                         htmlTextPart = part;
                     }
                 }
-
+                // We only use one Part
+                // If we have both we use the text part
                 if (clearTextPart != null) {
                     message = (String) clearTextPart.getContent();
                 } else if (htmlTextPart != null) {
                     String html = (String) htmlTextPart.getContent();
                     message = Jsoup.parse(html).text();
 
-                 // a simple text message
-                } else if (content instanceof String) {
-                    message = (String) content;
-                }
+                
+                } 
+            // a simple text message
+            } else if (content instanceof String) {
+                message = (String) content;
             }
 
         } catch (MessagingException e) {
-            System.out.println("TEST");
+            logger.error("nMessage could not be read", mail);
         } catch (FileNotFoundException e) {
-            System.out.println("TEST");
+            logger.error("File {} not found on system", mail);
         } catch (DecodingException e) {
-            System.out.println("Wrong Base64");
+            logger.error("Could not decode the Mail", mail);
         } catch (UnsupportedEncodingException e) {
-            System.out.println("Unsupported Encoding");
+            logger.error("Unsupported Encoding", mail);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("nUnexpected Error in Reading mail", mail);
         }
-
         return message;
 	}
-    
-    public List<String> getMostPossibleSpamWords(int count) {
-        List<String> mostPossibleSpamWords = new ArrayList<>();
-        PQsort pqs = new PQsort();
-        PriorityQueue<Entry<String,Double>> pq = new PriorityQueue<>(10, pqs);
-        for (Map.Entry<String, Double> entry : spam.entrySet()) {
-            
-            if(Arrays.asList(STOPWORDS).contains(entry.getKey())) {
-                continue;
-            }
-            pq.add(entry);
-        }
-        
-        for(int i = 0; i < count; i++) {
-            mostPossibleSpamWords.add(pq.poll().getKey());
-        }
-                
-        return mostPossibleSpamWords;
-    }
-    
-    static class PQsort implements Comparator<Entry<String,Double>> {
-        public int compare(Entry<String,Double> one, Entry<String,Double> two) {
-            return Double.compare(one.getValue(), two.getValue()) * -1;
-        }
-    }
 
 
 }
