@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,12 @@ public class SpamFilter {
      * The alpha value for equalizing the word maps.
      */
     private final static double ALPHA = 0.2;
+    private final static String[] STOPWORDS = {
+        "an", "and", "are", "as", "at", "by", "can", "do", "for", "from",
+        "get", "has", "how", "if", "in", "is", "it", "no", "not", "of",
+        "on", "or", "out", "over", "so", "that", "the", "this", "to",
+        "was", "what", "who", "with",
+       };
     
 	/**
 	 * A map of ham words.
@@ -313,7 +320,8 @@ public class SpamFilter {
         PQsort pqs = new PQsort();
         PriorityQueue<Entry<String,Double>> pq = new PriorityQueue<>(10, pqs);
         for (Map.Entry<String, Double> entry : spam.entrySet()) {
-            if(ham.get(entry.getKey()) != null) {
+            
+            if(ham.get(entry.getKey()) != null || Arrays.asList(STOPWORDS).contains(entry.getKey())) {
                 continue;
             }
             pq.add(entry);
