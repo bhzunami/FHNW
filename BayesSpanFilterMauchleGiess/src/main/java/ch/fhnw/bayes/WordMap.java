@@ -65,6 +65,11 @@ public class WordMap extends HashMap<String, Double> implements Comparator<Strin
 
 		// add to map
 		for (String aWord : inArrayOfWords) {
+		    
+		    // Ignore single letters
+		    if( aWord.length() <= 1) {
+		        continue;
+		    }
 
 			Double anAlreadySavedWordValue = get(aWord);
 
@@ -141,5 +146,4 @@ public class WordMap extends HashMap<String, Double> implements Comparator<Strin
         } 
 		// returning 0 would merge keys
 	}
-
 }
