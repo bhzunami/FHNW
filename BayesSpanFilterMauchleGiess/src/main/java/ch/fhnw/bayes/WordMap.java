@@ -2,7 +2,6 @@ package ch.fhnw.bayes;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -104,34 +103,6 @@ public class WordMap extends HashMap<String, Double> implements Comparator<Strin
 			System.out.println();
 		}
 		System.out.println();
-	}
-
-	/**
-	 * Gets the top ham or spam words.
-	 * 
-	 * @param inTop
-	 *            the integer indication how many words should be returned e.g.
-	 *            top 10, or top 20, ...
-	 * @return the list of top words.
-	 */
-	public List<String> getTop(int inTop) {
-		List<String> aListOfTopWords = new ArrayList<>();
-		List<Entry<String,Double>> aListOfMapEntries = new ArrayList<>();
-		for(Entry<String, Double> anEntry : entrySet()){
-			aListOfMapEntries.add(anEntry);
-		}
-		Collections.sort(aListOfMapEntries, new Comparator<Entry<String, Double>>(){
-
-			@Override
-			public int compare(java.util.Map.Entry<String, Double> o1, java.util.Map.Entry<String, Double> o2) {
-				return Double.compare(o1.getValue(), o2.getValue()) * -1;
-			}
-		
-		});
-		for(int index = 0; index < inTop; index++){
-			aListOfTopWords.add(aListOfMapEntries.get(index).getKey());
-		}
-		return aListOfTopWords;
 	}
 
 	/**

@@ -57,8 +57,6 @@ public class SpamFilter {
 	 */
 	private int totalSpamMails;
 	
-
-	
 	public SpamFilter() {
 	    this.ham = new WordMap();
 	    this.spam = new WordMap();
@@ -81,7 +79,6 @@ public class SpamFilter {
 		sf.learn();
 		
 		// print top spam words
-		System.out.println(sf.spam.getTop(50));
 		System.out.println(sf.getMostPossibleSpamWords(50));
 		
 		// If words exist only in ham or spam, word maps must be manipulated.
@@ -180,7 +177,9 @@ public class SpamFilter {
 			if(ham.get(aWord) == null && spam.get(aWord) == null){
 				continue;
 			}
-			
+			if(getMostPossibleSpamWords(50).contains(aWord) == false){
+				continue;
+			}
 			counter *= spam.getCount(aWord) / totalSpamMails;
 			denominatorPart2 *= ham.getCount(aWord) / totalHamMails;
 		}
